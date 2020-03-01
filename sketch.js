@@ -34,8 +34,12 @@ rect4Top = 200;
 // Rect 5
 rect5Top = 260;
 
+// Rect 6 + 7
+rect6Top = 450;
 
-msgString = "try clicking on an icon!"; // tell us what's going on
+
+
+msgString = "Try clicking on an icon!"; // tell us what's going on
 name = "";
 
 function preload() { //setting up the images in the list
@@ -61,7 +65,9 @@ function setup() {
   temp2 = loadImage('assets/temp2.png');
   cursor = loadImage('assets/cursor.png');
   spark = loadImage('assets/spark.gif');
+  leaves = loadImage('assets/leaves.png');
   song = loadSound('assets/Old_Bossa.mp3');
+
 noCursor();
   state = stateLeadwort;
 }
@@ -88,6 +94,7 @@ function draw() {
   drawDebugMsg();
   image(cursor,mouseX, mouseY);
   passSpark();
+  goNext();
 
 }
 
@@ -118,6 +125,7 @@ function keyPressed() { //set up changing states
 function Leadwort() {
    background(237, 212, 247);
   image(imageList[0], width / 2, height / 2);
+  image(leaves,500, 600);
 
   Icons();
   drawRects();
@@ -131,6 +139,7 @@ function Leadwort() {
 function Daisy() {
   background(201, 174, 182);
   image(imageList[1], width / 2, height / 2);
+  image(leaves,500, 600);
   Icons();
   drawRects();
   // draw message text
@@ -144,6 +153,7 @@ function Daisy() {
 function Poppy() {
   background(201, 235, 247);
   image(imageList[2], width / 2, height / 2);
+  image(leaves,500, 600);
   Icons();
   drawRects();
   // draw message text
@@ -156,6 +166,7 @@ function Rose() {
 
    background(255, 247, 163);
   image(imageList[3], width / 2, height / 2);
+  image(leaves,500, 600);
   Icons();
   drawRects();
   // draw message text
@@ -167,6 +178,7 @@ function Rose() {
 function Orchid() {
   background(177, 212, 173);
   image(imageList[4], width / 2, height / 2);
+  image(leaves,500, 600);
   Icons();
   drawRects();
   // draw message text
@@ -179,6 +191,7 @@ function Orchid() {
 function Lily() {
   background(255, 207, 173);
   image(imageList[5], width / 2, height / 2);
+  image(leaves,500, 600);
   Icons();
   drawRects();
   // draw message text
@@ -232,11 +245,11 @@ function Icons() {
   if (mouseX >= 10 && mouseX <= 70 && mouseY >= 270 && mouseY <= 330) {
     fill(242, 117, 31);
     textSize(35);
-    text('!!!!!!!!', -15, 70);
+    text('!!!!!!!!', -20, 70);
   } else {
     fill(242, 117, 31);
     textSize(35);
-    text('!!!', -15, 70);
+    text('!!!', -20, 70);
   }
 
   translate(-40, -220);
@@ -246,18 +259,20 @@ function Icons() {
 
 
 function drawDebugMsg() {
-  textFont('Homemade Apple');
+  textFont('Oswald');
 
-  textSize(25);
+  textSize(40);
   fill(0);
   noStroke();
   text(name, width * 3 / 7, height * 1 / 9);
+  textSize(25);
   text(msgString, width * 2 / 3, height * 1 / 8, 300, 600);
 }
 
 function drawRects() {
   // draw an red at center
   noFill(255, 0, 0);
+  //fill(0);
   noStroke();
 
   rect(rectLeft, rect1Top, rwidth, rheight);
@@ -265,6 +280,8 @@ function drawRects() {
   rect(rectLeft, rect3Top, rwidth, rheight);
   rect(rectLeft, rect4Top, rwidth, rheight);
   rect(rectLeft, rect5Top, rwidth, rheight);
+  rect(rectLeft, rect6Top, rwidth, rheight);
+  rect(rectLeft+930, rect6Top, rwidth, rheight);
 }
 
 function mousePressed() {
@@ -290,7 +307,7 @@ function mousePressed() {
     else if (isMouseInRect(rectLeft, rect5Top, rwidth, rheight))
       msgString = "Fun Fact: Leadworts are a non-invasive species!";
     else
-      msgString = "try clicking on an icon!";
+      msgString = "Try clicking on an icon!";
   } else if (state == stateDaisy) {
     print("state Daisy");
     if (isMouseInRect(rectLeft, rect1Top, rwidth, rheight)) {
@@ -305,7 +322,7 @@ function mousePressed() {
     else if (isMouseInRect(rectLeft, rect5Top, rwidth, rheight))
       msgString = "Fun Fact: Daisies belong to one of the largest families of plants in the world.";
     else
-      msgString = "try clicking on an icon!";
+      msgString = "Try clicking on an icon!";
 
   } else if (state == statePoppy) {
     print("state Poppy");
@@ -321,7 +338,7 @@ function mousePressed() {
     else if (isMouseInRect(rectLeft, rect5Top, rwidth, rheight))
       msgString = "Fun Fact: Coming in a variety of colors including red, orange, yellow, white and pink, be sure to cut this wildflower to display inside.";
     else
-      msgString = "try clicking on an icon!";
+      msgString = "Try clicking on an icon!";
 
 
   } else if (state == stateRose) {
@@ -338,7 +355,7 @@ function mousePressed() {
     else if (isMouseInRect(rectLeft, rect5Top, rwidth, rheight))
       msgString = "Fun Fact: Given the many species, Roses also hybirdize easily, allowing you to explore the many varieties.";
     else
-      msgString = "try clicking on an icon!";
+      msgString = "Try clicking on an icon!";
 
   } else if (state == stateOrchid) {
     print("state Orchid");
@@ -354,7 +371,7 @@ function mousePressed() {
     else if (isMouseInRect(rectLeft, rect5Top, rwidth, rheight))
       msgString = "Fun Fact: The smallest orchid is the size of a dime.";
     else
-      msgString = "try clicking on an icon!";
+      msgString = "Try clicking on an icon!";
 
   } else if (state == stateLily) {
     print("state Lily");
@@ -370,14 +387,30 @@ function mousePressed() {
     else if (isMouseInRect(rectLeft, rect5Top, rwidth, rheight))
       msgString = "Fun Fact: The lily has a diversity of symbolism throughout the world.";
     else
-      msgString = "try clicking on an icon!";
-
+      msgString = "Try clicking on an icon!";
 
   }
 
+if (state>=stateDaisy&& state<=stateOrchid)
+   {
+    if (isMouseInRect(rectLeft, rect6Top, rwidth, rheight))
+      state--;
+    else if(isMouseInRect(rectLeft+930, rect6Top, rwidth, rheight))
+      state++;
+   } 
+if(state==stateLeadwort)
+    if(isMouseInRect(rectLeft+930, rect6Top, rwidth, rheight))
+      state++;
+if (state==stateLily)
+    if (isMouseInRect(rectLeft, rect6Top, rwidth, rheight))
+      state--;
+
+
+
+
+    
 
 }
-
 // rectL = left edge
 // rectW = width
 // right edge = left edge + width
@@ -402,5 +435,21 @@ function passSpark(){
 }
 
 
+function goNext()
+{
+  fill(220, 138, 157);
+  textSize(100);
+  textFont('Homemade Apple');
+
+  if (state>=stateDaisy&& state<=stateOrchid)
+   {
+    text("<",17,width/2);
+    text(">",960,width/2);
+   } 
+  else if(state==stateLeadwort)
+    text(">",960,width/2);
+  else if (state==stateLily)
+    text("<",17,width/2);
 
 
+}
